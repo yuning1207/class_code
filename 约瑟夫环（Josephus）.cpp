@@ -1,68 +1,70 @@
-#include <stdio.h>
-#include <stdlib.h>
- 
+#include<stdio.h>
+#include<stdlib.h>
+
 typedef struct node
 {
-	struct node * next;
-	int password;
 	int num;
+	int password;
+	struct node *next;
 }node;
 
-node head={0};
+node head = {0};
+node *end = {0};
 
-void creatlist(node * p,int n);
-void josephusoperate(node * p,int password,int n);
-void josephusoperate(node * p,int password,int n)
+void createlist(int n)
 {
-	int i=0;
-	node * q;
-	for(;n>0;p=p->next)
+	int *a = NULL;
+	a = (int *)malloc(n * sizeof(int));
+	node *p = &head;
+	for (int i = 0; i<n; i++)
 	{
-		i++;
-		if(i==password-1)
+		scanf("%d", &a[i]);
+	}
+	for (int i = 0; i<n; i++)
+	{
+		p->num = i + 1;
+		p->password = a[i];
+		if (i<n - 1)
 		{
-			printf("%d ",p->next->num);
-			password=p->next->password;
-			q=p->next;
-			p->next=p->next->next;
-			free(q);
+			p->next = (node *)malloc(sizeof(node));
+			p = p->next;
+		}
+	}
+	p->next = &head;//构成循环链表 
+	end = p;//尾指针 
+}
+
+void j(int n, int password)
+{
+	int i = 1;
+	node *q;
+	node *p = end;//p指针指向密码的前一个节点，方便删除 
+	while (n>0)
+	{
+		if (i == password)
+		{
+			q = p->next;
+			printf("%d ", q->num);
+			password = q->password;
+			p->next = q->next;
+			free(q); 
 			n--;
-			i=0;
+			i = 1;
+		}
+		else {
+			p = p->next;
+			i++;
 		}
 	}
 	return;
+
 }
-void creatlist(node * p,int n)
-{
-	int * a;
-	int i;
-	a=(int *)malloc(n*sizeof(int));
-	for(i=1;i<=n;i++)
-	{
-		scanf("%d",&a[i]);
-	}
-	int password;
-	int num;
-	for(i=1;i<=n;i++)
-	{
-		p->num=i;
-		p->password=a[i];
-		if(i!=n)
-		{
-			p->next=(node *)malloc(sizeof(node));
-			p=p->next;
-		}	
-	}
-	p->next=&head;
-	free(a);
-	return;
-}
+
 int main(void)
 {
-	int num;
-	int password;
-	scanf("%d %d",&num,&password);
-	creatlist(&head,num);
-	josephusoperate(&head,password,num);
+	int m, n;
+	scanf("%d %d", &n, &m);
+	createlist(n);
+	j(n, m);
 	return 0;
 }
