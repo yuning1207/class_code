@@ -56,7 +56,7 @@ int main(void)
 	gets(a);
 	SeqStack * s;
 	s=init_SeqStack();
-	for(i=0;a[i]!='\0';i++)
+	for(i=0;a[i]!='@';i++)
 	{
 		j=Push_SeqStack(s,a[i]);
 		if(j==0)
@@ -68,7 +68,7 @@ int main(void)
 		if(j==0)
 			break;
 	}
-	b[i]='\0';
+	b[i]='@';
 	if(strcmp(a,b)==0)
 		printf("»ØÎÄÊý×Ö£¡");
 	else
