@@ -43,7 +43,7 @@ int Pop_SeqStack(SeqStack * s,char * x)
 	if(Empty_SeqStack(s)==1)
 		return 0;
 	else{
-		* x=s->data[s->top];
+		*x=s->data[s->top];
 		s->top--;
 		return 1;
 	}
@@ -51,7 +51,8 @@ int Pop_SeqStack(SeqStack * s,char * x)
 
 int main(void)
 {
-	char a[100]={0},b[100]={0};
+	char a[100]={0};
+	char b[100]={0}; 
 	int i,j;
 	gets(a);
 	SeqStack * s;
