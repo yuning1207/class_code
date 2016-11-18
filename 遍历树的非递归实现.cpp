@@ -13,7 +13,28 @@ void visit(int data);//访问该结点的数据
 void preorder(bitnode * root); //非递归实现先序遍历 
 void inorder(bitnode * root);//非递归实现中序遍历 
 void postorder(bitnode * root);//非递归实现后序遍历
+void levelorder(bitnode * root);//非递归实现层次遍历 
 
+void levelorder(bitnode * root)
+{
+	seqqueue * s;
+	bitnode * p;
+	initqueue(s);
+	enterqueue(s,root);
+	while(!isempty(s))
+	{
+		deletequeue(s,&p);
+		visit(p->data);
+		if(p->lchild!=NULL)
+		{
+			enterqueue(s,p->lchild);
+		}
+		if(p->rchild!=NULL)
+		{
+			enterqueue(s,p->rchild);
+		}
+	}
+}
 void postorder(bitnode * root)
 {
 	seqstack * s;
@@ -32,13 +53,15 @@ void postorder(bitnode * root)
 		if(!isempty(s))
 		{
 			top(s,&p);
-			if(p->rchild!=NULL||p->rchild!=q)
+			if(p->rchild==NULL||p->rchild==q)
 			{
 				pop(s,p);
 				visit(p->data);
 				q=p;
 				p=NULL;
 			}
+			else
+				p=p->rchild;
 		}
 	}
 }
