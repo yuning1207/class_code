@@ -16,7 +16,8 @@ typedef struct b
 lqueue * initlqueue(void);
 void inlqueue(lqueue * p,char x);
 int outlqueue(lqueue * s,char * x);
-lqueue * initlqueue(void)//ÖÃ¿Õ¶Ó   
+
+lqueue * initlqueue(void)//????   
 {
 	lqueue * p;
 	qnode * q;
@@ -41,7 +42,7 @@ int outlqueue(lqueue * p,char * x)
 {
 	if(p->front==p->rear)
 	{
-		printf("¶Ó¿Õ£¡");
+		printf("????");
 		return 0;
 	}
 	qnode * q;
