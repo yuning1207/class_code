@@ -18,7 +18,7 @@ csequeue * initcsequeue(void)//ÖÃ¿Õ¶Ó
 {
 	csequeue * s;
 	s=(csequeue *)malloc(sizeof(csequeue));
-	s->front=s->rear=-1;
+	s->front=s->rear=maxsize-1;
 	return s;
 }
 
