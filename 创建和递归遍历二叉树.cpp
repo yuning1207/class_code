@@ -7,9 +7,9 @@ typedef struct a
 	char data;
 	struct a * lchild;
 	struct a * rchild;
-} bitnode;
+}bitnode;
 
-void creatbitree(bitnode * root);//构建二叉树
+void creatbitree(bitnode ** root);//构建二叉树
 void visit(char data);//输出结点的数据域 
 void preorder(bitnode * root);//先序遍历二叉树 
 void inorder(bitnode * root);//中序遍历二叉树 
@@ -51,15 +51,15 @@ void creatbitree(bitnode ** root)
 	char ch;
 	ch=getchar();
 	if(ch=='#')
-		* root=NULL;
+		(*root)=NULL;
 	else
 	{
-		*root=(bitnode *)malloc(sizeof(bitnode));
-		if(*root==NULL)
+		(*root)=(bitnode *)malloc(sizeof(bitnode));
+		if((*root)==NULL)
 			exit(-1);
 		(*root)->data=ch;
-		creatbitree(&((*root)->lchild));
-		creatbitree(&((*root)->rchild));
+		creatbitree(&(*root)->lchild);
+		creatbitree(&(*root)->rchild);
 	}
 }
 int main()
