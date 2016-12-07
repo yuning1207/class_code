@@ -13,7 +13,13 @@ SeqStack *init_SeqStack();//建立栈
 int Empty_SeqStack(SeqStack * s);//判断栈是否为空 
 int Push_SeqStack(SeqStack * s,char x);//进行x的入栈 
 int Pop_SeqStack(SeqStack * s,char * x);//出栈，并将出栈的元素存入x中 
+int full_SeqStack(SeqStack *s);//判断栈是否满 
 
+int full_SeqStack(SeqStack *s)
+{
+	if(s->top==maxsize-1)//若栈满，返回0 
+	return 0;
+}
 SeqStack *init_SeqStack()
 {
 	SeqStack * s;
@@ -30,8 +36,9 @@ int Empty_SeqStack(SeqStack * s)
 }
 int Push_SeqStack(SeqStack * s,char x)
 {
-	if(s->top==maxsize-1)//若栈满，返回0 
-	return 0;
+	
+	if(!full_SeqStack(s))
+		return 0;
 	else{
 		s->top++;
 		s->data[s->top]=x;
