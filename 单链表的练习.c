@@ -7,16 +7,35 @@ typedef struct node
 	struct node *next;
 }NODE;
 
-NODE *create_list(void);
-void traver_list(NODE *phead);
+NODE *create_list(void);//建链 
+void traver_list(NODE *phead);//输出链表 
+NODE *add_node(NODE *phead);//头插 
 
 int main()
 {
 	NODE *phead=NULL;
 	phead=create_list();
 	traver_list(phead);
+	phead=add_node(phead);
+	traver_list(phead);
 }
 
+NODE *add_node(NODE *phead)
+{
+	NODE * q;
+	q=(NODE *)malloc(sizeof(NODE));
+	if(q==NULL)
+	{
+		printf("分配失败，程序终止！\n");
+		exit(-1);
+	}
+	//q->next=NULL;
+	printf("请输入需要插入的节点的值：\n");
+	scanf("%d",&q->data);
+	q->next=phead->next;
+	phead->next=q;
+	return phead;
+}
 NODE *create_list(void)
 {
 	int len,val,i;
