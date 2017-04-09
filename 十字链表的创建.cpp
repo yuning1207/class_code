@@ -13,7 +13,7 @@ typedef struct olnode
 
 typedef struct b
 {
-	olnode ** rowhead;
+	olnode ** rowhead;   
 	olnode ** colhead;
 	int rows;
 	int cols;
