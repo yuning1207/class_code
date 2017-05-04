@@ -1,20 +1,15 @@
-#include <iostream>
-#include <cstring>
+#include<iostream>
+#include <string>
 using namespace std;
-
 class Vehicle
 {
 protected:
     string NO;//编号
 public:
-    Vehicle(string n)
-	{
-		NO = n;
-	}
+    Vehicle(string n){				    NO = n;  }
     virtual int fee()=0;//计算应收费用
 };
 
-/* 请在这里填写答案 */
 class Car:public Vehicle
 {
 	int guest,weight;
@@ -57,6 +52,7 @@ class Bus:public Vehicle
 			return guest*3;
 		}
 };
+
 
 int main()
 {
